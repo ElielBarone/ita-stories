@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6c945">
+<title>🇮🇹 Italian Story — Marco the Baker</title>
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--text:#202124;--muted:#6b7280;--accent:#e2ad00;--soft:#fff3b8;--border:#e5e7eb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.75}
+header{position:sticky;top:0;z-index:10;background:rgba(247,247,245,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.head{max-width:820px;margin:auto;padding:18px 20px 14px}
+h1{margin:0;font-size:clamp(1.35rem,4vw,2rem);line-height:1.2}
+.sub{color:var(--muted);font-size:.9rem;margin-top:5px}
+.controls{display:flex;gap:8px;margin-top:12px}
+button{border:1px solid var(--border);background:#fff;border-radius:999px;padding:7px 13px;font:inherit;font-size:.86rem;cursor:pointer}
+button:hover{background:var(--soft)}
+main{max-width:820px;margin:auto;padding:26px 20px 90px}
+.video{position:relative;width:100%;padding-top:56.25%;margin-bottom:22px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.story{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:clamp(20px,5vw,38px);box-shadow:0 8px 30px rgba(0,0,0,.06);font-size:18px}
+.chunk{cursor:pointer;border-radius:6px;padding:2px 3px;transition:.15s}
+.chunk:hover,.chunk:focus,.chunk.selected{background:var(--soft);outline:none}
+.translation{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(760px,calc(100% - 24px));background:#202124;color:#fff;border-radius:16px;padding:14px 17px;box-shadow:0 12px 35px rgba(0,0,0,.25);display:none;z-index:20}
+.translation.show{display:block}
+.it{font-size:.88rem;color:#ddd;margin-bottom:3px}
+.en{font-size:1.04rem;line-height:1.45}
+.hint{font-size:.72rem;color:#aaa;margin-top:5px}
+@media(max-width:600px){
+ main{padding:16px 11px 95px}
+ .story{padding:20px 16px;border-radius:15px;font-size:17px;line-height:1.72}
+ .head{padding-left:15px;padding-right:15px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="head">
+<h1>🇮🇹 I Wake Up at 3:45 AM and I Love It</h1>
+<div class="sub">Italian story · A2–B1 · Tap a sentence or phrase to see its meaning in English.</div>
+<div class="controls"><a href="index.html" style="text-decoration:none"><button type="button">← Stories</button></a><button id="minus">A−</button><button id="plus">A+</button><button id="hide">Hide translation</button></div>
+</div>
+</header>
+<main>
+<div class="video"><iframe src="https://www.youtube.com/embed/MfbQ1oN1dkk" title="Marco the Baker — YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<article class="story" id="story"></article></main>
+<div class="translation" id="panel"><div class="it" id="it"></div><div class="en" id="en"></div><div class="hint">Tap another phrase to continue.</div></div>
+<script>
+const data=[{"it": "Mi sveglio alle 3:45 del mattino.", "en": "I wake up at 3:45 in the morning."}, {"it": "Sì, 3:45.", "en": "Yes, 3:45."}, {"it": "Tutti pensano che sono pazzo,", "en": "Everyone thinks I'm crazy,"}, {"it": "forse hanno ragione,", "en": "maybe they're right,"}, {"it": "ma io sorrido già prima di aprire gli occhi,", "en": "but I am already smiling before I open my eyes,"}, {"it": "perché oggi, come ogni giorno, vado a fare la cosa che amo di più.", "en": "because today, like every day, I am going to do the thing I love most."}, {"it": "Mi chiamo Marco, ho 38 anni e faccio il fornaio.", "en": "My name is Marco, I am 38 years old, and I am a baker."}, {"it": "È il mio mestiere", "en": "It is my profession,"}, {"it": "ed è la mia passione.", "en": "and it is my passion."}, {"it": "Non avrei mai pensato di dirlo a 20 anni,", "en": "I would never have thought I would say that at 20 years old,"}, {"it": "ma è così.", "en": "but that's how it is."}, {"it": "e mi vesto in silenzio per non svegliare mia moglie Anna e la piccola Sofia.", "en": "And I get dressed quietly so I don't wake my wife Anna and little Sofia."}, {"it": "Una maglietta bianca,", "en": "A white T-shirt,"}, {"it": "pantaloni comodi.", "en": "comfortable pants."}, {"it": "Bacio mia moglie sulla guancia,", "en": "I kiss my wife on the cheek,"}, {"it": "lei dorme,", "en": "she is sleeping,"}, {"it": "mi sorride senza aprire gli occhi.", "en": "she smiles at me without opening her eyes."}, {"it": "Esco di casa.", "en": "I leave the house."}, {"it": "Le strade del paese sono vuote.", "en": "The streets of the town are empty."}, {"it": "Solo io, la luna piena e qualche gatto curioso.", "en": "Just me, the full moon, and a few curious cats."}, {"it": "Cammino fino alla panetteria.", "en": "I walk to the bakery."}, {"it": "Sono solo 5 minuti a piedi.", "en": "It is only a five-minute walk."}, {"it": "Apro la porta della mia panetteria.", "en": "I open the door of my bakery."}, {"it": "L'odore mi accoglie subito.", "en": "The smell welcomes me immediately."}, {"it": "Farina, lievito,", "en": "Flour, yeast,"}, {"it": "legno antico.", "en": "old wood."}, {"it": "Per gli altri sarà un odore strano.", "en": "For other people it will be a strange smell."}, {"it": "Per me è il profumo della felicità.", "en": "For me, it is the scent of happiness."}, {"it": "Accendo le luci,", "en": "I turn on the lights,"}, {"it": "metto il grembiule bianco,", "en": "I put on the white apron,"}, {"it": "apro il sacco di farina,", "en": "I open the sack of flour,"}, {"it": "le mani affondano nella farina morbida.", "en": "my hands sink into the soft flour."}, {"it": "È fredda,", "en": "It is cold,"}, {"it": "comincia la magia.", "en": "the magic begins."}, {"it": "Lavoro l'impasto a mano,", "en": "I work the dough by hand,"}, {"it": "veloce.", "en": "quickly."}, {"it": "Forte,", "en": "Strongly,"}, {"it": "quasi un ballo.", "en": "almost like a dance."}, {"it": "Mio padre mi ha insegnato così e suo padre prima di lui.", "en": "My father taught me this way, and his father before him."}, {"it": "Tre generazioni di mani in questa stessa farina.", "en": "Three generations of hands in this same flour."}, {"it": "Metto i pani nel forno antico,", "en": "I put the loaves in the old oven,"}, {"it": "lo guardo,", "en": "I watch it,"}, {"it": "il fuoco scoppietta dentro,", "en": "the fire crackles inside,"}, {"it": "il pane comincia a crescere lentamente.", "en": "the bread begins to rise slowly."}, {"it": "Questo momento ogni giorno mi commuove un po'.", "en": "This moment moves me a little every day."}, {"it": "Alle 5:30 il primo pane è pronto.", "en": "At 5:30 the first bread is ready."}, {"it": "La panetteria si riempie del profumo più buono del mondo.", "en": "The bakery fills with the best smell in the world."}, {"it": "Apro la porta.", "en": "I open the door."}, {"it": "Il giorno comincia per il paese.", "en": "The day begins for the town."}, {"it": "La prima cliente è sempre la signora Lina.", "en": "The first customer is always Mrs. Lina."}, {"it": "Ha 80 anni.", "en": "She is 80 years old."}, {"it": "Compra mezzo pane e due grissini tutti i giorni.", "en": "She buys half a loaf and two breadsticks every day."}, {"it": "Mi dice", "en": "She says to me,"}, {"it": "Marco, sei bravo come tuo padre.", "en": "Marco, you're as good as your father."}, {"it": "Sorrido,", "en": "I smile,"}, {"it": "mi sento fiero.", "en": "I feel proud."}, {"it": "Poi arrivano gli operai,", "en": "Then the workers arrive,"}, {"it": "poi le mamme con i bambini,", "en": "then the mothers with their children,"}, {"it": "poi gli impiegati di corsa per il lavoro.", "en": "then the office workers rushing to work."}, {"it": "Tutti mi salutano per nome.", "en": "Everyone greets me by name."}, {"it": "Io conosco i loro nomi.", "en": "I know their names."}, {"it": "È come una grande famiglia.", "en": "It's like one big family."}, {"it": "Un giorno entra un bambino piccolo da solo per la prima volta.", "en": "One day a little boy comes in alone for the first time."}, {"it": "Ha 6 anni,", "en": "He is 6 years old,"}, {"it": "mi guarda con paura,", "en": "he looks at me fearfully,"}, {"it": "tiene in mano una moneta da €1.", "en": "he is holding a €1 coin in his hand."}, {"it": "Sussurra.", "en": "He whispers."}, {"it": "Vorrei un pane piccolo, per favore.", "en": "I'd like a small loaf of bread, please."}, {"it": "Gli do un panino caldo appena fatto.", "en": "I give him a hot sandwich that has just been made."}, {"it": "È un regalo per la tua prima volta da solo.", "en": "It's a gift for your first time coming in alone."}, {"it": "I suoi occhi si illuminano,", "en": "His eyes light up,"}, {"it": "esce correndo", "en": "he runs out"}, {"it": "felice.", "en": "happy."}, {"it": "Verso mezzogiorno arriva il problema.", "en": "Around noon, the problem arrives."}, {"it": "Il forno fa uno strano rumore.", "en": "The oven makes a strange noise."}, {"it": "Tac, tac, tac.", "en": "Tap, tap, tap."}, {"it": "Lo guardo preoccupato.", "en": "I look at it worriedly."}, {"it": "Provo a sistemarlo.", "en": "I try to fix it."}, {"it": "Il forno è vecchio come me ormai.", "en": "The oven is as old as I am by now."}, {"it": "Lo accarezzo.", "en": "I stroke it."}, {"it": "Sembra sciocco, lo so.", "en": "It seems silly, I know."}, {"it": "Ma poi funziona di nuovo.", "en": "But then it works again."}, {"it": "Forse non era così sciocco.", "en": "Maybe it wasn't so silly."}, {"it": "Alle 2:00 del pomeriggio chiudo la panetteria.", "en": "At 2:00 in the afternoon I close the bakery."}, {"it": "Torno a casa stanco ma felice.", "en": "I go home tired but happy."}, {"it": "Mentre cammino vedo gli altri che cominciano la pausa pranzo.", "en": "As I walk, I see the others beginning their lunch break."}, {"it": "La mia giornata di lavoro è già finita.", "en": "My workday is already over."}, {"it": "Hanno appena cominciato la loro.", "en": "They have just started theirs."}, {"it": "A casa mia moglie ha preparato la pasta.", "en": "At home my wife has prepared pasta."}, {"it": "Sofia mi salta addosso.", "en": "Sofia jumps into my arms."}, {"it": "Papà, sei tornato.", "en": "Dad, you're back."}, {"it": "Profumi pane.", "en": "You smell like bread."}, {"it": "La abbraccio forte.", "en": "I hug her tightly."}, {"it": "Profumiamo entrambi di farina.", "en": "We both smell of flour."}, {"it": "Ormai pranziamo insieme", "en": "By now, we have lunch together,"}, {"it": "tutti e tre,", "en": "all three of us,"}, {"it": "poi dormo per due ore,", "en": "then I sleep for two hours,"}, {"it": "un pisolino meritato.", "en": "a well-deserved nap."}, {"it": "La gente mi chiede sempre la stessa cosa.", "en": "People always ask me the same thing."}, {"it": "Marco, ma come fai?", "en": "Marco, how do you do it?"}, {"it": "Non sei stanco?", "en": "Aren't you tired?"}, {"it": "Non vorresti dormire fino a tardi?", "en": "Wouldn't you like to sleep late?"}, {"it": "Io rispondo sempre allo stesso modo.", "en": "I always answer in the same way."}, {"it": "Sì, sono stanco,", "en": "Yes, I am tired,"}, {"it": "ma sono felice.", "en": "but I am happy."}, {"it": "E sapete una cosa?", "en": "And you know what?"}, {"it": "La felicità vera è quando il lavoro non sembra un lavoro,", "en": "True happiness is when work doesn't feel like work,"}, {"it": "è quando le mani sporche di farina sono le mani più pulite del mondo.", "en": "it is when flour-covered hands are the cleanest hands in the world."}];
+const story=document.getElementById('story');
+const panel=document.getElementById('panel');
+const it=document.getElementById('it');
+const en=document.getElementById('en');
+const plus=document.getElementById('plus');
+const minus=document.getElementById('minus');
+const hide=document.getElementById('hide');
+let show=true,size=18;
+
+data.forEach((x)=>{
+  const s=document.createElement('span');
+  s.className='chunk';
+  s.tabIndex=0;
+  s.textContent=x.it;
+  s.onclick=()=>select(s,x);
+  s.onkeydown=(e)=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();select(s,x);}
+  };
+  story.appendChild(s);
+});
+
+function select(s,x){
+  document.querySelectorAll('.selected').forEach(e=>e.classList.remove('selected'));
+  s.classList.add('selected');
+  if(show){it.textContent=x.it;en.textContent=x.en;panel.classList.add('show');}
+}
+plus.onclick=()=>{size=Math.min(27,size+1);story.style.fontSize=size+'px';};
+minus.onclick=()=>{size=Math.max(15,size-1);story.style.fontSize=size+'px';};
+hide.onclick=()=>{
+  show=!show;
+  hide.textContent=show?'Hide translation':'Show translation';
+  if(!show)panel.classList.remove('show');
+};
+</script>
+</body>
+</html>

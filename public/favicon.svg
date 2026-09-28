@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Transparent outside the rounded-square tile -->
+  <rect x="48" y="48" width="928" height="928" rx="150" fill="#4A2BFF"/>
+
+  <!-- Star -->
+  <path fill="#FFFFFF" d="
+    M512 190
+    L548 274
+    L639 283
+    L570 342
+    L590 432
+    L512 384
+    L434 432
+    L454 342
+    L385 283
+    L476 274 Z"/>
+
+  <!-- Sparkles -->
+  <circle cx="320" cy="315" r="28" fill="#FFFFFF"/>
+  <circle cx="704" cy="315" r="28" fill="#FFFFFF"/>
+  <circle cx="512" cy="445" r="25" fill="#FFFFFF"/>
+  <circle cx="312" cy="462" r="22" fill="#FFFFFF"/>
+  <circle cx="712" cy="462" r="22" fill="#FFFFFF"/>
+
+  <!-- Left magical curve -->
+  <path d="M276 385 C365 380 420 430 438 515"
+        fill="none" stroke="#FFFFFF" stroke-width="38"
+        stroke-linecap="round"/>
+
+  <!-- Right magical curve -->
+  <path d="M748 385 C659 380 604 430 586 515"
+        fill="none" stroke="#FFFFFF" stroke-width="38"
+        stroke-linecap="round"/>
+
+  <!-- Open book -->
+  <path d="
+    M512 620
+    C450 548 366 530 264 540
+    L264 770
+    C365 758 450 770 512 830
+    C574 770 659 758 760 770
+    L760 540
+    C658 530 574 548 512 620 Z"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="38"
+    stroke-linejoin="round"
+    stroke-linecap="round"/>
+
+  <!-- Outer page curves -->
+  <path d="M210 590 L210 790 C318 780 423 794 512 850"
+        fill="none" stroke="#FFFFFF" stroke-width="38"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M814 590 L814 790 C706 780 601 794 512 850"
+        fill="none" stroke="#FFFFFF" stroke-width="38"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center spine -->
+  <path d="M512 620 L512 850"
+        fill="none" stroke="#FFFFFF" stroke-width="38"
+        stroke-linecap="round"/>
+</svg>

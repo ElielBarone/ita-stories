@@ -1,0 +1,29 @@
+.story {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: clamp(20px, 5vw, 38px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.chunk {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 2px 3px;
+  transition: 0.15s;
+}
+
+.chunk:hover,
+.chunk:focus,
+.chunk.selected {
+  background: var(--soft);
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .story {
+    padding: 20px 16px;
+    border-radius: 15px;
+    line-height: 1.72;
+  }
+}

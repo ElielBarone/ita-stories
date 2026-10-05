@@ -4,6 +4,7 @@ export interface Sentence {
   it: string
   en: string
   pt: string
+  speaker?: string
 }
 
 export interface Story {

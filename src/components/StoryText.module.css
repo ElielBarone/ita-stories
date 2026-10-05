@@ -20,6 +20,24 @@
   outline: none;
 }
 
+.line {
+  margin-bottom: 14px;
+}
+
+.line:last-child {
+  margin-bottom: 0;
+}
+
+.speaker {
+  display: block;
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted, #8a8a86);
+  margin-bottom: 4px;
+}
+
 @media (max-width: 600px) {
   .story {
     padding: 20px 16px;

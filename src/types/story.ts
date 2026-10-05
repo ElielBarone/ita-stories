@@ -12,5 +12,6 @@ export interface Story {
   level: string
   blurb: string
   youtubeId?: string
+  videoSrc?: string
   sentences: Sentence[]
 }

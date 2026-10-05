@@ -88,7 +88,13 @@ export function StoryPage() {
         <SoundToggle enabled={speakEnabled} onToggle={handleToggleSpeak} />
       </PageHeader>
       <PageMain>
-        {story.youtubeId && <VideoEmbed youtubeId={story.youtubeId} title={`${story.title} — YouTube video`} />}
+        {(story.youtubeId || story.videoSrc) && (
+          <VideoEmbed
+            youtubeId={story.youtubeId}
+            videoSrc={story.videoSrc}
+            title={`${story.title} — video`}
+          />
+        )}
         <StoryText
           sentences={story.sentences}
           selectedIndex={selectedIndex}

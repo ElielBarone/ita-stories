@@ -1,0 +1,33 @@
+import type { Story } from "@/types/story"
+
+export const monaLisa: Story = {
+  slug: "mona-lisa",
+  title: "The Light Was Here Before the Masters",
+  level: "B1–B2",
+  blurb: "A short imagined dialogue between Leonardo da Vinci and Monna Lisa, about light, gaze, and what truly changes in a painted face.",
+  videoSrc: "/videos/monalisa.mp4",
+  sentences: [
+  {"it":"Madonna Lisa, siate venuta con lume.","en":"My lady Lisa, you have come with the light.","pt":"Minha senhora Lisa, viestes com a luz."},
+  {"it":"Il lume era qui prima dei maestri.","en":"The light was here before the masters.","pt":"A luz já estava aqui antes dos mestres."},
+  {"it":"Ora sono diversa?","en":"Am I different now?","pt":"Agora estou diferente?"},
+  {"it":"No, la luce sì.","en":"No, but the light is.","pt":"Não, mas a luz sim."},
+  {"it":"Perché mi guardate più di quanto dipingete?","en":"Why do you look at me more than you paint?","pt":"Por que você olha para mim mais do que pinta?"},
+  {"it":"Perché il vedere viene prima.","en":"Because seeing comes first.","pt":"Porque ver vem primeiro."},
+  {"it":"E che cosa vedete?","en":"And what do you see?","pt":"E o que você vê?"},
+  {"it":"Qualcosa che cambia.","en":"Something that changes.","pt":"Algo que muda."},
+  {"it":"Io non mi muovo.","en":"I am not moving.","pt":"Eu não me movo."},
+  {"it":"Il volto sì.","en":"But your face does.","pt":"Mas o rosto sim."},
+  {"it":"Ogni pensiero lo muta.","en":"Every thought changes it.","pt":"Cada pensamento o muda."},
+  {"it":"Allora dovreste dipingere chi non pensa.","en":"Then you should paint someone who doesn't think.","pt":"Então você deveria pintar quem não pensa."},
+  {"it":"Ne ho veduto molti.","en":"I have seen many of those.","pt":"Já vi muitos assim."},
+  {"it":"Ecco.","en":"There.","pt":"Pronto."},
+  {"it":"Che cosa?","en":"What?","pt":"O quê?"},
+  {"it":"Non tornate indietro.","en":"Don't go back.","pt":"Não volte atrás."},
+  {"it":"Indietro?","en":"Back?","pt":"Atrás?"},
+  {"it":"Dove?","en":"Where?","pt":"Onde?"},
+  {"it":"Alla donna entrata da quella porta.","en":"To the woman who came through that door.","pt":"Para a mulher que entrou por aquela porta."},
+  {"it":"Quanto durerà?","en":"How long will it last?","pt":"Quanto tempo vai durar?"},
+  {"it":"Non lo so.","en":"I don't know.","pt":"Não sei."},
+  {"it":"Non lo so.","en":"I don't know.","pt":"Não sei."},
+  ],
+}

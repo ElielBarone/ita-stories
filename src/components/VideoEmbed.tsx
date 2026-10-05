@@ -1,11 +1,20 @@
 import styles from './VideoEmbed.module.css'
 
 interface VideoEmbedProps {
-  youtubeId: string
+  youtubeId?: string
+  videoSrc?: string
   title: string
 }
 
-export function VideoEmbed({ youtubeId, title }: VideoEmbedProps) {
+export function VideoEmbed({ youtubeId, videoSrc, title }: VideoEmbedProps) {
+  if (videoSrc) {
+    return (
+      <div className={styles.localVideo}>
+        <video src={videoSrc} controls playsInline title={title} />
+      </div>
+    )
+  }
+
   return (
     <div className={styles.video}>
       <iframe

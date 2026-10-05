@@ -10,7 +10,7 @@ export function VideoEmbed({ youtubeId, videoSrc, title }: VideoEmbedProps) {
   if (videoSrc) {
     return (
       <div className={styles.localVideo}>
-        <video src={videoSrc} controls playsInline title={title} />
+        <video src={`${import.meta.env.BASE_URL}${videoSrc}`} controls playsInline title={title} />
       </div>
     )
   }

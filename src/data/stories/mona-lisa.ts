@@ -5,7 +5,7 @@ export const monaLisa: Story = {
   title: "The Light Was Here Before the Masters",
   level: "B1–B2",
   blurb: "A short imagined dialogue between Leonardo da Vinci and Monna Lisa, about light, gaze, and what truly changes in a painted face.",
-  videoSrc: "/videos/monalisa.mp4",
+  videoSrc: "videos/monalisa.mp4",
   sentences: [
   {"it":"Madonna Lisa, siate venuta con lume.","en":"My lady Lisa, you have come with the light.","pt":"Minha senhora Lisa, viestes com a luz."},
   {"it":"Il lume era qui prima dei maestri.","en":"The light was here before the masters.","pt":"A luz já estava aqui antes dos mestres."},

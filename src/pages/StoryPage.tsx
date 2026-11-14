@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { FontSizeControl } from '@/components/FontSizeControl'
+import { InvertToggle } from '@/components/InvertToggle'
 import { LanguageMenu } from '@/components/LanguageMenu'
 import { PageHeader } from '@/components/PageHeader'
 import { PageMain } from '@/components/PageMain'
@@ -10,12 +11,13 @@ import { TranslationPanel } from '@/components/TranslationPanel'
 import { VideoEmbed } from '@/components/VideoEmbed'
 import { getStoryBySlug } from '@/data/stories'
 import { buildExplainUrl } from '@/lib/explainUrl'
-import { speakItalian } from '@/lib/tts'
+import { speak } from '@/lib/tts'
 import { recordAiHelp, recordTranslate } from '@/lib/weakSpots/store'
 import type { Language } from '@/types/story'
 
 const LANG_STORAGE_KEY = 'ita-stories-lang'
 const SPEAK_STORAGE_KEY = 'ita-stories-speak'
+const INVERT_STORAGE_KEY = 'ita-stories-inverted'
 const MIN_FONT_SIZE = 15
 const MAX_FONT_SIZE = 27
 const DEFAULT_FONT_SIZE = 18
@@ -30,6 +32,10 @@ function loadStoredSpeakEnabled(): boolean {
   return stored !== 'off'
 }
 
+function loadStoredInverted(): boolean {
+  return localStorage.getItem(INVERT_STORAGE_KEY) === 'on'
+}
+
 export function StoryPage() {
   const { slug } = useParams<{ slug: string }>()
   const story = getStoryBySlug(slug)
@@ -38,6 +44,7 @@ export function StoryPage() {
   const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE)
   const [lang, setLang] = useState<Language>(loadStoredLanguage)
   const [speakEnabled, setSpeakEnabled] = useState(loadStoredSpeakEnabled)
+  const [inverted, setInverted] = useState(loadStoredInverted)
 
   if (!story) {
     return (
@@ -50,11 +57,13 @@ export function StoryPage() {
     )
   }
 
+  const primaryLang = inverted ? lang : 'it'
+  const secondaryLang = inverted ? 'it' : lang
   const selectedSentence = selectedIndex !== null ? story.sentences[selectedIndex] : null
 
   function handleSelect(index: number) {
     setSelectedIndex(index)
-    if (speakEnabled) speakItalian(story!.sentences[index].it)
+    if (speakEnabled) speak(story!.sentences[index][primaryLang], primaryLang)
     recordTranslate(story!.slug, index, story!.sentences[index])
   }
 
@@ -74,6 +83,12 @@ export function StoryPage() {
     localStorage.setItem(SPEAK_STORAGE_KEY, next ? 'on' : 'off')
   }
 
+  function handleToggleInvert() {
+    const next = !inverted
+    setInverted(next)
+    localStorage.setItem(INVERT_STORAGE_KEY, next ? 'on' : 'off')
+  }
+
   return (
     <>
       <PageHeader
@@ -85,6 +100,7 @@ export function StoryPage() {
           onDecrease={() => setFontSize((size) => Math.max(MIN_FONT_SIZE, size - 1))}
         />
         <LanguageMenu lang={lang} onChange={handleLangChange} />
+        <InvertToggle inverted={inverted} onToggle={handleToggleInvert} />
         <SoundToggle enabled={speakEnabled} onToggle={handleToggleSpeak} />
       </PageHeader>
       <PageMain>
@@ -97,6 +113,7 @@ export function StoryPage() {
         )}
         <StoryText
           sentences={story.sentences}
+          primaryLang={primaryLang}
           selectedIndex={selectedIndex}
           fontSize={fontSize}
           onSelect={handleSelect}
@@ -104,8 +121,8 @@ export function StoryPage() {
       </PageMain>
       {selectedSentence && (
         <TranslationPanel
-          original={selectedSentence.it}
-          translation={selectedSentence[lang]}
+          original={selectedSentence[primaryLang]}
+          translation={selectedSentence[secondaryLang]}
           explainUrl={buildExplainUrl(selectedSentence.it, selectedSentence[lang], lang)}
           onClose={() => setSelectedIndex(null)}
           onExplain={handleExplain}

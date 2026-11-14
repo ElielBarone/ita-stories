@@ -1,5 +1,7 @@
 export type Language = 'en' | 'pt'
 
+export type DisplayLang = 'it' | Language
+
 export interface Sentence {
   it: string
   en: string
